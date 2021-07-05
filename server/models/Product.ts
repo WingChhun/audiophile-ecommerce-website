@@ -26,14 +26,20 @@ const ProductSchema = new mongoose.Schema({
     type: String,
   },
   features: {
+    type: String,
+    default: '',
+  },
+  includes: {
     type: Array,
     default: [],
   },
-  includes: {
-    type: String,
-  },
   gallery: {
-    type: String,
+    type: Object,
+    default: {
+      first: { mobile: '', tablet: '', desktop: '' },
+      second: { mobile: '', tablet: '', desktop: '' },
+      third: { mobile: '', tablet: '', desktop: '' },
+    },
   },
   others: {
     type: Array,

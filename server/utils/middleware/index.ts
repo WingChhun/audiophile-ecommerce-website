@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { Application } from 'express';
 import chalk from 'chalk';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 
-async function initMiddleware(app: any) {
+async function initMiddleware(app: Application) {
   return new Promise((resolve, reject) => {
     try {
       // Allow JSON.
