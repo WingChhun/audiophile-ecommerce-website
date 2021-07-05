@@ -8,12 +8,12 @@ const Query = gql`
     product(id: ID!): Product
 
     #     # Cart related
-    #     carts: [Cart]
-    # cart(id: String!): Cart
+    carts: [Cart]
+    cart(id: String!): Cart
 
     # # Receipt Related
-    # receipt(id: String!): Receipt
-    # receipts: [Receipt]
+    receipt(id: String!): Receipt
+    receipts: [Receipt]
   }
 `;
 // Define shape of queries representing our data.
