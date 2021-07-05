@@ -1,125 +1,6 @@
 import { gql } from 'apollo-server-express';
-// Define shape of queries representing our data.
-const typeDefs = gql`
-  type Image {
-    mobile: String
-    tablet: String
-    desktop: String
-  }
 
-  type ProductFeatures {
-    quantity: Float
-    item: String
-  }
-
-  type Gallery {
-    first: Image
-    second: Image
-    third: Image
-  }
-  type Slug {
-    slug: String
-    name: String
-    image: Image
-  }
-
-  type Product {
-    id: ID
-    slug: String
-    image: Image
-    category: String
-    new: Boolean
-    price: Float
-    description: String
-    features: String
-    includes: [ProductFeatures]
-    gallery: Gallery
-    others: [Slug]
-  }
-
-  input ProductInput {
-    slug: String
-    image: Image
-    category: String
-    new: Boolean
-    price: Float
-    description: String
-    features: String
-    includes: [ProductFeatures]
-    gallery: Gallery
-    others: [Slug]
-  }
-
-  ###########################
-  type Billing {
-    name: String
-    email: String
-    phone: String
-  }
-
-  type Shipping {
-    address: String
-    zip: String
-    city: String
-    country: String
-  }
-
-  type Payment {
-    method: String
-    eMoneyNum: String
-    eMoneyPin: String
-  }
-
-  type CheckoutDetails {
-    billing: Billing
-    shipping: Shipping
-    payment: Payment
-  }
-
-  input CheckoutDetailsInput {
-    billing: Billing
-    shipping: Shipping
-    payment: Payment
-  }
-
-  type Cart {
-    id: ID
-    products: [Product]
-    total: Float
-    vat: Float
-    shipping: Float
-    grandTotal: Float
-    active: Boolean
-
-    checkout: CheckoutDetails
-  }
-
-  input CartInput {
-    products: [ProductInput]
-    total: Float
-    vat: Float
-    shipping: Float
-    grandTotal: Float
-    active: Boolean
-
-    checkout: CheckoutDetailsInput
-  }
-
-  type Receipt {
-    id: ID
-    cartId: String
-    total: Float
-    # Store as UTC String
-    date: String
-  }
-
-  input ReceiptInput {
-    cartId: String
-    total: Float
-    # Store as UTC String
-    date: String
-  }
-
+const Query = gql`
   ######################
   type Query {
     # Product Related
@@ -134,7 +15,9 @@ const typeDefs = gql`
     # receipt(id: String!): Receipt
     # receipts: [Receipt]
   }
-
+`;
+// Define shape of queries representing our data.
+const Mutation = gql`
   ########################
   # In a sense, this is our CRUD.
   type Mutation {
@@ -156,5 +39,4 @@ const typeDefs = gql`
   }
 `;
 
-// FIXME: mutation.?
-export default typeDefs;
+export { Query, Mutation };

@@ -1,13 +1,16 @@
 import { Application } from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import typeDefs from './types';
+import Cart from './types/cart';
+import Product from './types/product';
+import Receipt from './types/receipt';
+import { Query, Mutation } from './types';
 import resolvers from './resolvers';
 
 async function initGraphQL(app: Application) {
   // The ApolloServer constructor requires two parameters: your schema
   // definition and your set of resolvers.
   const server = new ApolloServer({
-    typeDefs,
+    typeDefs: [Cart, Product, Receipt, Query, Mutation],
     resolvers,
     playground: {
       endpoint: '/graphql',
